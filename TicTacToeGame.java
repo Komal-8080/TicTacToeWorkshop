@@ -26,9 +26,7 @@ public class TicTacToeGame {
 			return player;
 		} else {
 			System.out.println("Invalid Input");
-
 		}
-
 		return player;
 	}
 
@@ -40,60 +38,26 @@ public class TicTacToeGame {
 		}
 	}
 
-	//UC4-Method to location user on his desired position
-	public static void userPosition() {
-		int loop = 0;
-		while (loop == 0) {
-			System.out.println("Enter Your Value from 1-9:");
-			Scanner input = new Scanner(System.in);
-			int userIndex = input.nextInt();
-			char symbol = ' ';
-			switch (player) {
-			case 1:
-				board[1] = symbol;
-				break;
-			case 2:
-				board[2] = symbol;
-				break;
-			case 3:
-				board[3] = symbol;
-				break;
-			case 4:
-				board[4] = symbol;
-				break;
-			case 5:
-				board[5] = symbol;
-				break;
-			case 6:
-				board[6] = symbol;
-				break;
-			case 7:
-				board[7] = symbol;
-				break;
-			case 8:
-				board[8] = symbol;
-				break;
-			case 9:
-				board[9] = symbol;
-				break;
-			}
+	// UC4-Method to location user on his desired position
+	public static void userLocation() {
+		System.out.println("Enter Your Value from 1-9:");
+		Scanner input = new Scanner(System.in);
+		int userIndex = input.nextInt();
+		selectXor0();
+		if (userIndex < 0 && userIndex >= 9) {
+			System.out.println("Enter Value between 1-9:");
+		} else if (board[userIndex] != ' ') {
+			System.out.println("It is already taken");
 			selectXor0();
-			if (userIndex < 0 && userIndex >= 9) {
-				System.out.println("Enter Value between 1-9:");
-			} else if (board[userIndex] != ' ') {
-				System.out.println("It is already taken");
-				selectXor0();
-			} else {
-				board[userIndex] = player;
-				displayBoard();
-				continue;
-			}
+		} else {
+			board[userIndex] = player;
 		}
 	}
 
 	// Main method
 	public static void main(String[] args) {
 		System.out.println("Welcome to TicTacToe");
-		userPosition();
+		userLocation();
+		displayBoard();
 	}
 }
